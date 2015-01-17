@@ -1,0 +1,30 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model TestingAsp.net5.Models.WaqarViewModels.IndexViewModel
+
+@{
+    ViewBag.Title = "Waqar Index Page";
+}
+
+@*
+@Html.ValidationSummary(false,"",new { @class = "danger-text;" })
+@Html.BeginForm("Index", "Waqar", FormMethod.Get,new { name = "Form1" })
+@Html.TextBoxFor(m => m.textbox1, new { @class = "form-control" })
+@Html.ValidationMessageFor(m => m.textbox1,"", new { @class = "danger-text" })
+@Html.TextBoxFor(m => m.textbox2, new { @class = "form-control" })
+@Html.ValidationMessageFor(m => m.textbox2, "", new { @class = "danger-text" })
+*@
+
+@*You can skip all the above statements and place this one instead, they are equivalent.*@
+@*Provided you have set the Model rightly.*@
+@{Html.BeginForm("Index", "Waqar", FormMethod.Get, new { name = "Form1" }); }
+@Html.EditorForModel()
+
+@Html.RadioButtonFor(m => m.radioButton1, "radio1", new { name = "radio1" })
+@Html.RadioButtonFor(m => m.radioButton1, "radio2", new { name = "radio1" })
+
+<input type="submit" value="Submit" />
+@{ Html.EndForm();
+}

@@ -1,0 +1,15 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "Waqar Page";
+}
+@*These 2 are the form elements used by the getJSONresponse.js Script for Ajax jQuery Action*@
+<input name="btnGetMovies" id="btnGetMovies" type="submit" value="Get Movies">
+<ul id="movieList"></ul>
+
+@*This is a Script that will Send JSON request to WaqarController's Movies (Action Method)*@
+@*Which Simply returns a JSON Response instead of a View or Partial View Respectively*@
+@section Scripts{
+    <script src="@Url.Content("~/lib/myScripts/getJSONresponse.js")"></script>
+}

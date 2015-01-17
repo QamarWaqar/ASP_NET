@@ -1,0 +1,12 @@
+﻿{
+    "Data": {
+        "DefaultConnection": { 
+            "ConnectionString": "workstation id=rockyBalboaDB.mssql.somee.com;packet size=4096;user id=qmr;pwd=qqqqqqqq;data source=rockyBalboaDB.mssql.somee.com;persist security info=False;initial catalog=rockyBalboaDB"
+        }
+    },
+    "EntityFramework": {
+        "ApplicationDbContext": {
+            "ConnectionStringKey": "Data:DefaultConnection:ConnectionString"
+        }
+    }
+}

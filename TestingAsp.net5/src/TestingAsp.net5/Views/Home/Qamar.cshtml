@@ -1,0 +1,63 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model int
+@{
+    ViewBag.Title = "Qamar";
+
+    string str0 = "The added value to viewbag from Controller is = ";
+    string str1 = "The value of the model is = ";
+    string str2 = "The value of Viewdata[\"Model\"] is = ";
+    string str3 = "The value of query string var is = ";
+}
+@*One way of Doing Web Forms*@
+<form action="/Home/Qamar" method="get" name="Form1">
+    <input type="text" name="q" value="Qamar" />
+    <input type="submit" value="Submit Form 1" />
+</form>
+@*Second way of Doing Web Forms*@
+@using (Html.BeginForm("Qamar", "Home", FormMethod.Post, new { name = "Form2" }))
+{
+    // Getting value from ViewData["htmlHelperTextBox"] //
+    // Getting value from ViewBag.htmlHelperTextBox //
+    // now the TextBox has id and name = htmlHelperTextBox //
+    // but the value is what the value is set in the controller //
+    // or you can say the value of ViewData["htmlHelperTextBox"] or ViewBag.htmlHelperTextBox is //
+    @Html.TextBox("htmlHelperTextBox", "htmlHelperTextBoxText");
+    @*<input type="text" name="q" value="Qamar" />*@
+    <input type="submit" value="Submit Form 2" />
+}
+@*Second's variation way of Doing Web Forms*@
+@*Please note the Anonymous Object used to set the Form tag's Attributes*@
+@{Html.BeginForm("Qamar", "Home", FormMethod.Get, new { name = "Form3" }); }
+<input type="text" name="q" value="Waqar" />
+<input type="submit" value="Submit Form 3" />
+@{ Html.EndForm(); }
+
+@*Third way of Doing Web Forms*@
+@{ 
+    @*
+    var Context = this.ViewContext.RequestContext;
+
+    // you can also use here the new C# 6.0's Index Initializer at Side Object Initializers //
+    // for example: //
+    // Remember remember Dictionary is a name and value pair //
+    // var values = new RouteValueDictionary { ["controller"]= "Home", ["action"]="Qamar" }; //
+    // the lower statement you are seeing is an old method of getting things done //
+
+    var values = new RouteValueDictionary { { "controller", "Home" }, { "action", "Qamar" } };
+    var path = RouteTable.Routes.GetVirtualPath(Context, values);
+    @*Now all you have to do is make a Form outside this block and do action="@path.VirtualPath"*@
+    @*And your Form will work fine*@
+}
+
+<h1>@ViewBag.Message @str0 @ViewBag.test @str1 @Model @str2 @ViewData["Model"] @str3 @ViewBag.q @ViewBag.htmlHelperTextBox</h1>
+<h2>@section qSec{This is my <b>Section</b> Text.}</h2>
+
+@* in another overloaded method of "Actionlink" you can pass for "RouteValues" parameter *@
+@* an Object of type "RoutevalueDictionary" *@
+@*omg look at the 4th parameter for "RouteValues" its an anonymous object that I am passing to action link*@
+@*and its consuing the controller and action while the names it doesnt know converting them into query strings thats cool!*@
+<h3>@Html.ActionLink("Link to Qamar", "Qamar", "Home",new { id = 23, test="test" })</h3>
+@*plus note that I am passing null for the htmlAttributes too :) the last parameter in "RouteLink"*@
+<h3>@Html.RouteLink("Link to Home", new { controller = "Home", action = "Index", id = 23, test = "test" },null)</h3>
